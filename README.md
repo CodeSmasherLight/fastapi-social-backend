@@ -13,8 +13,8 @@ Currently in active development. Building incrementally, structure and architect
 - ✅ RESTful API endpoints
 - ✅ Migrating all operations to database
 - 🔄 SQLAlchemy ORM integration
-- 🔄 Alembic database migrations
 - 🔄 User authentication
+- 🔄 Alembic database migrations
 - 🔄 CI/CD pipeline with GitHub Actions
 
 ## Tech Stack
@@ -43,11 +43,10 @@ DELETE /posts/{id}    - Delete post by ID
 - [x] Set up basic FastAPI application
 - [x] Connect PostgreSQL database
 - [x] Implement basic CRUD operations
-- [ ] Complete database migration for all endpoints
+- [x] Complete database migration for all endpoints
 - [ ] Integrate SQLAlchemy ORM
-- [ ] Add Alembic for database migrations
 - [ ] Implement user authentication & authorization
 - [ ] Add voting/like system
-- [ ] Set up GitHub Actions CI/CD
+- [ ] Add Alembic for database migrations
 - [ ] Add comprehensive tests
-- [ ] Environment variable configuration
+- [ ] Set up GitHub Actions CI/CD
