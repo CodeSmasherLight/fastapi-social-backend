@@ -1,13 +1,19 @@
-from fastapi import FastAPI, Body, Response, status, HTTPException
+from fastapi import FastAPI, Body, Response, status, HTTPException, Depends
 from pydantic import BaseModel
 from random import randrange
 import psycopg
 from psycopg.rows import dict_row
 import time
+from sqlalchemy.orm import Session
+from . import models
+from .database import engine, get_db
+
+models.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI()
 
+get_db()
 # schema for Post
 class Post(BaseModel):
     title: str
@@ -47,6 +53,10 @@ while True:
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+@app.get("/sqlalchemy")
+def test_post(db: Session = Depends(get_db)):
+    return {"Status": "Success"}
 
 
 @app.get("/posts")
