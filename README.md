@@ -12,7 +12,7 @@ Currently in active development. Building incrementally, structure and architect
 - ✅ PostgreSQL database integration
 - ✅ RESTful API endpoints
 - ✅ Migrating all operations to database
-- 🔄 SQLAlchemy ORM integration
+- ✅ SQLAlchemy ORM integration
 - 🔄 User authentication
 - 🔄 Alembic database migrations
 - 🔄 CI/CD pipeline with GitHub Actions
@@ -44,7 +44,7 @@ DELETE /posts/{id}    - Delete post by ID
 - [x] Connect PostgreSQL database
 - [x] Implement basic CRUD operations
 - [x] Complete database migration for all endpoints
-- [ ] Integrate SQLAlchemy ORM
+- [x] Integrate SQLAlchemy ORM
 - [ ] Implement user authentication & authorization
 - [ ] Add voting/like system
 - [ ] Add Alembic for database migrations
