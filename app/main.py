@@ -5,7 +5,7 @@ import psycopg
 from psycopg.rows import dict_row
 import time
 from sqlalchemy.orm import Session
-from . import models
+from . import models, schemas
 from .database import engine, get_db
 
 models.Base.metadata.create_all(bind=engine)
@@ -15,10 +15,6 @@ app = FastAPI()
 
 get_db()
 # schema for Post
-class Post(BaseModel):
-    title: str
-    content: str
-    published: bool = True
 
 
 while True:
@@ -54,22 +50,17 @@ while True:
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/sqlalchemy")
-def test_post(db: Session = Depends(get_db)):
-    posts = db.query(models.Post).all()
-    return {"Data": posts}
 
-
-@app.get("/posts")
+@app.get("/posts", response_model=list[schemas.PostResponse])
 def get_posts(db: Session = Depends(get_db)):
     # cursor.execute("SELECT * FROM posts")
     # posts = cursor.fetchall()
     posts = db.query(models.Post).all()
-    return {"data": posts}
+    return posts
 
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED)
-def create_posts(post: Post, db: Session = Depends(get_db)):
+@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=schemas.PostResponse)
+def create_posts(post: schemas.PostCreate, db: Session = Depends(get_db)):
     # cursor.execute("INSERT INTO posts (title, content, published) VALUES (%s, %s, %s) RETURNING *", 
     #                (post.title, post.content, post.published ))
     # new_post = cursor.fetchone()
@@ -78,14 +69,14 @@ def create_posts(post: Post, db: Session = Depends(get_db)):
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
-    return {"data": new_post}
+    return new_post
 
 # # for demonstration purposes only to shpw that it works from top to bottom
 # @app.get("/posts/latest")
 # def get_last_post():
 #     return my_posts[-1]
 
-@app.get("/posts/{id}")
+@app.get("/posts/{id}", response_model=schemas.PostResponse)
 def get_post(id: int, db: Session = Depends(get_db)):
     # cursor.execute("SELECT * FROM posts WHERE id = %s", (str(id),))
     # post = cursor.fetchone()
@@ -96,7 +87,7 @@ def get_post(id: int, db: Session = Depends(get_db)):
                             detail=f"post with id: {id} was not found")
         # response.status_code = status.HTTP_404_NOT_FOUND
         # return {"message": f"post with id: {id} was not found"}
-    return {"post_detail": post}
+    return post
 
 
 @app.delete("/posts/{id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -115,8 +106,8 @@ def delete_post(id: int, db: Session = Depends(get_db)):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@app.put("/posts/{id}")
-def update_post(id: int, post: Post, db: Session = Depends(get_db)):
+@app.put("/posts/{id}", response_model=schemas.PostResponse)
+def update_post(id: int, post: schemas.PostCreate, db: Session = Depends(get_db)):
     # cursor.execute("UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING *", 
     #                (post.title, post.content, post.published, str(id)))
     # updated_post = cursor.fetchone()
@@ -133,4 +124,4 @@ def update_post(id: int, post: Post, db: Session = Depends(get_db)):
 
     db.commit()
 
-    return {"data": post_query.first()}
+    return post_query.first()
