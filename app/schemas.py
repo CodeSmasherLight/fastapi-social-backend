@@ -6,7 +6,7 @@ class PostBase(BaseModel):
     content: str
     published: bool = True
 
-
+# post
 class PostCreate(PostBase):
     pass
 
@@ -14,6 +14,7 @@ class PostResponse(PostBase):
     # created_at: datetime
     pass
 
+# user
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
@@ -23,4 +24,4 @@ class UserOutput(BaseModel):
     email: EmailStr
     created_at: datetime
     class Config:
-        orm_mode = True
+        from_attributes = True

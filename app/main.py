@@ -5,8 +5,9 @@ import psycopg
 from psycopg.rows import dict_row
 import time
 from sqlalchemy.orm import Session
-from . import models, schemas
+from . import models, schemas, utils
 from .database import engine, get_db
+
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -14,7 +15,6 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 get_db()
-# schema for Post
 
 
 while True:
@@ -46,6 +46,7 @@ while True:
 #         if p['id'] == id:
 #             return i        
 
+# for Post model
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -127,11 +128,26 @@ def update_post(id: int, post: schemas.PostCreate, db: Session = Depends(get_db)
     return post_query.first()
 
 
-# for user model
+# for User model
 @app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schemas.UserOutput)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+
+    # hash the password - user.password
+    hashed_password = utils.hash_password(user.password)
+    user.password = hashed_password
+
     new_user = models.User(**user.model_dump())
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     return new_user
+
+
+@app.get("/users/{id}", response_model=schemas.UserOutput)
+def get_user(id: int, db: Session = Depends(get_db)):
+
+    user = db.query(models.User).filter(models.User.id == id).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"user with id: {id} was not found")
+    return user
