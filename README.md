@@ -4,39 +4,17 @@ A RESTful API backend for a social media platform built with FastAPI and Postgre
 
 ## Project Status
 
-Currently in active development. Building incrementally, structure and architecture will be refactored as features are added.
-
-## Features (In Progress)
-
-- ✅ Basic CRUD operations for posts
-- ✅ PostgreSQL database integration
-- ✅ RESTful API endpoints
-- ✅ Migrating all operations to database
-- ✅ SQLAlchemy ORM integration
-- 🔄 User authentication
-- 🔄 Alembic database migrations
-- 🔄 CI/CD pipeline with GitHub Actions
+It is currently in active development. I am building it incrementally, and structure and architecture may change as the project progresses.
 
 ## Tech Stack
 
-- **FastAPI** - Modern Python web framework for building APIs
+- **FastAPI** - Python web framework for building APIs
 - **PostgreSQL** - Relational database
-- **Psycopg3** - PostgreSQL adapter (transitioning to SQLAlchemy)
+- **Psycopg3** - PostgreSQL adapter 
 - **Pydantic** - Data validation using Python type hints
-- **SQLAlchemy** - ORM (upcoming)
-- **Alembic** - Database migrations (upcoming)
-- **GitHub Actions** - CI/CD (upcoming)
-
-## Current Endpoints
-
-```
-GET    /              - Root endpoint
-GET    /posts         - Get all posts
-POST   /posts         - Create a new post
-GET    /posts/{id}    - Get post by ID
-PUT    /posts/{id}    - Update post by ID
-DELETE /posts/{id}    - Delete post by ID
-```
+- **SQLAlchemy** - ORM
+- **Alembic** - Database migrations
+- **GitHub Actions** - CI/CD
 
 ## Development Roadmap
 
