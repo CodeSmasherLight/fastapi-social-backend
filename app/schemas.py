@@ -11,6 +11,9 @@ class PostCreate(PostBase):
     pass
 
 class PostResponse(PostBase):
+    id: int
+    owner_id: int
+    owner: 'UserOutput'
     # created_at: datetime
     pass
 
