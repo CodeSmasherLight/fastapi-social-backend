@@ -49,7 +49,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: int | None = None
-
+    
 # vote
 class Vote(BaseModel):
     post_id: int

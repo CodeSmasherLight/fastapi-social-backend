@@ -3,7 +3,7 @@ from . import models
 from .database import engine
 from .routers import post, user, auth, vote
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine) # commented out as now i am using alembic for migrations
 
 app = FastAPI()
        
