@@ -24,7 +24,7 @@ It is currently in active development. I am building it incrementally, and struc
 - [x] Complete database migration for all endpoints
 - [x] Integrate SQLAlchemy ORM
 - [x] Implement user authentication & authorization
-- [ ] Add voting/like system
-- [ ] Add Alembic for database migrations
+- [x] Add voting/like system
+- [x] Add Alembic for database migrations
 - [ ] Add comprehensive tests
 - [ ] Set up GitHub Actions CI/CD
