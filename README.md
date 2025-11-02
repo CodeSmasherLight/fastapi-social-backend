@@ -2,9 +2,20 @@
 
 A RESTful API backend for a social media platform built with FastAPI and PostgreSQL.
 
-## Project Status
+## Live Link
 
-It is currently in active development. I am building it incrementally, and structure and architecture may change as the project progresses.
+**API Documentation:** https://fastapi-social-backend.onrender.com/docs
+
+The API is deployed on Render, visit the link above to explore and interact with all available endpoints through the Swagger UI.
+
+## Features
+
+- Create Users 
+- User authentication & authorization with JWT tokens
+- CRUD operations for posts
+- Voting/like system for posts
+- Query parameters for pagination and search
+- Owner based authorization for posts
 
 ## Tech Stack
 
@@ -12,9 +23,21 @@ It is currently in active development. I am building it incrementally, and struc
 - **PostgreSQL** - Relational database
 - **Psycopg3** - PostgreSQL adapter 
 - **Pydantic** - Data validation using Python type hints
-- **SQLAlchemy** - ORM
+- **SQLAlchemy** - ORM for database interactions
 - **Alembic** - Database migrations
-- **GitHub Actions** - CI/CD
+- **JWT** - Token-based authentication
+
+## API Endpoints
+
+- `POST /users` - Create a new user
+- `POST /login` - User authentication
+- `GET /users/{id}` - Get specific user details
+- `GET /posts` - Get all posts (with pagination & search)
+- `POST /posts` - Create a new post
+- `GET /posts/{id}` - Get a specific post
+- `PUT /posts/{id}` - Update a post
+- `DELETE /posts/{id}` - Delete a post
+- `POST /vote` - Vote on a post
 
 ## Development Roadmap
 
@@ -26,5 +49,6 @@ It is currently in active development. I am building it incrementally, and struc
 - [x] Implement user authentication & authorization
 - [x] Add voting/like system
 - [x] Add Alembic for database migrations
+- [x] Deploy to production (Render)
 - [ ] Add comprehensive tests
 - [ ] Set up GitHub Actions CI/CD
