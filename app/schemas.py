@@ -6,7 +6,6 @@ class PostBase(BaseModel):
     title: str
     content: str
     published: bool = True
-
 # post
 class PostCreate(PostBase):
     pass
@@ -16,14 +15,14 @@ class PostResponse(PostBase):
     owner_id: int
     owner: 'UserOutput'
     # created_at: datetime
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 class PostWithVotes(BaseModel):
     Post: PostResponse
     votes: int
     
-    class Config:
+    class ConfigDict:
         from_attributes = True        
 
 # user
@@ -35,7 +34,7 @@ class UserOutput(BaseModel):
     id: int
     email: EmailStr
     created_at: datetime
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 # authentication
