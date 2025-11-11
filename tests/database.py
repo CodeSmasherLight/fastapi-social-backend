@@ -1,3 +1,5 @@
+# we dont need this file now as i have moved the test database setup and fixtures to conftest.py
+
 import pytest
 from fastapi.testclient import TestClient
 from app.main import app
