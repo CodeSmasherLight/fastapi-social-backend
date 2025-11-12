@@ -1,10 +1,10 @@
 # FastAPI Social Backend
 
-A RESTful API backend for a social media platform built with FastAPI and PostgreSQL.
+A RESTful API backend for a social media platform(generic) built with FastAPI and PostgreSQL.
 
 ## Live Link
 
-**API Documentation:** https://fastapi-social-backend.onrender.com/docs
+**API Documentation:** https://fastapi-social-backend.onrender.com/docs (will be invalid in first week of dec 2025 as project is temporary hosted on render's free tier)
 
 The API is deployed on Render, visit the link above to explore and interact with all available endpoints through the Swagger UI.
 
@@ -39,7 +39,7 @@ The API is deployed on Render, visit the link above to explore and interact with
 - `DELETE /posts/{id}` - Delete a post
 - `POST /vote` - Vote on a post
 
-## Development Roadmap
+## This is how i built this project step by step, you can check git commit history for better understanding:
 
 - [x] Set up basic FastAPI application
 - [x] Connect PostgreSQL database
@@ -50,5 +50,5 @@ The API is deployed on Render, visit the link above to explore and interact with
 - [x] Add voting/like system
 - [x] Add Alembic for database migrations
 - [x] Deploy to production (Render)
-- [ ] Add comprehensive tests
-- [ ] Set up GitHub Actions CI/CD
+- [x] Add comprehensive tests
+- [x] Set up GitHub Actions CI pipeline(not CD coz render auto deploys on push to main)
